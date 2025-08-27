@@ -1,0 +1,2 @@
+# Load Zephyr board defconfig descriptions.
+osource "/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/Kconfig.defconfig"

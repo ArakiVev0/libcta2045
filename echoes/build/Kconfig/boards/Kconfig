@@ -1,0 +1,4 @@
+# Load Zephyr board Kconfig descriptions.
+osource "/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/Kconfig"
+config BOARD_REVISION_0_9_0
+	def_bool y

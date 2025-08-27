@@ -1,0 +1,2 @@
+# Load board Kconfig descriptions.
+osource "/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/Kconfig.nrf9161dk"

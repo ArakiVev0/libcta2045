@@ -1,0 +1,63 @@
+cmake:
+  application:
+    configuration-dir: '/home/powerlab/app/echoes'
+    source-dir: '/home/powerlab/app/echoes'
+  board:
+    name: 'nrf9161dk'
+    path:
+     - '/home/powerlab/app/zephyr/boards/nordic/nrf9161dk'
+    qualifiers: 'nrf9161'
+    revision: '0.9.0'
+  devicetree:
+    bindings-dirs:
+     - '/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/dts/bindings'
+     - '/home/powerlab/app/zephyr/dts/bindings'
+    files:
+     - '/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/nrf9161dk_nrf9161.dts'
+    include-dirs:
+     - '/home/powerlab/app/modules/hal/ambiq/dts'
+     - '/home/powerlab/app/modules/hal/atmel/include'
+     - '/home/powerlab/app/modules/hal/bouffalolab/include'
+     - '/home/powerlab/app/modules/hal/bouffalolab/include/zephyr'
+     - '/home/powerlab/app/modules/hal/gigadevice/include'
+     - '/home/powerlab/app/modules/hal/microchip/include'
+     - '/home/powerlab/app/modules/hal/microchip/dts'
+     - '/home/powerlab/app/modules/hal/nuvoton/dts'
+     - '/home/powerlab/app/modules/hal/nxp/dts'
+     - '/home/powerlab/app/modules/hal/stm32/dts'
+     - '/home/powerlab/app/modules/hal/ti/dts'
+     - '/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/dts'
+     - '/home/powerlab/app/zephyr/include'
+     - '/home/powerlab/app/zephyr/include/zephyr'
+     - '/home/powerlab/app/zephyr/dts/common'
+     - '/home/powerlab/app/zephyr/dts/vendor'
+     - '/home/powerlab/app/zephyr/dts/rx'
+     - '/home/powerlab/app/zephyr/dts/x86'
+     - '/home/powerlab/app/zephyr/dts/xtensa'
+     - '/home/powerlab/app/zephyr/dts/sparc'
+     - '/home/powerlab/app/zephyr/dts/riscv'
+     - '/home/powerlab/app/zephyr/dts/posix'
+     - '/home/powerlab/app/zephyr/dts/arm64'
+     - '/home/powerlab/app/zephyr/dts/arm'
+     - '/home/powerlab/app/zephyr/dts/arc'
+     - '/home/powerlab/app/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/nrf9161dk_nrf9161_defconfig'
+     - '/home/powerlab/app/echoes/prj.conf'
+    user-files:
+     - '/home/powerlab/app/echoes/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/opt/zephyr-sdk'
+  vendor-specific:
+    nordic:
+      svdfile: '/home/powerlab/app/modules/hal/nordic/nrfx/mdk/nrf9120.svd'
+  zephyr:
+    version: '4.2.99'
+    zephyr-base: '/home/powerlab/app/zephyr'
+version: '0.1.0'
+west:
+  command: '/usr/bin/west build -b nrf9161dk/nrf9161 -p always .'
+  topdir: '/home/powerlab/app'
+  version: '1.4.0'

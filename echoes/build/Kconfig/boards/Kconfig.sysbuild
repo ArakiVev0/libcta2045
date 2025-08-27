@@ -1,0 +1,2 @@
+# Load Sysbuild board Kconfig descriptions.
+osource "/home/powerlab/app/zephyr/boards/nordic/nrf9161dk/Kconfig.sysbuild"
