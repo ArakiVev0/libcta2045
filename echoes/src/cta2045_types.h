@@ -33,6 +33,9 @@
 #define MAXPAYLOAD_RESP 0x19
 
 /* ---------- Intermediate ---------- */
+#define GET_INFO_OP_CODE1 0x01
+#define GET_INFO_OP_CODE2 0x01
+
 #define GET_UTC_TIME 0x02
 #define OP_CODE2_REPLY 0x80
 

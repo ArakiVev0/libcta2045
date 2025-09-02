@@ -2,19 +2,22 @@
 #include "cta2045_pack.h"
 #include "common.h"
 #include "cta2045_types.h"
+#include <stdint.h>
 #include <string.h>
 #include <zephyr/sys/byteorder.h>
 
 /* local checksum */
 static uint16_t cta2045_checksum(const uint8_t *buf, size_t len) {
-  int c1 = 0xaa, c2 = 0;
+  uint32_t c1 = 0xaa, c2 = 0;
   for (size_t i = 0; i < len; i++) {
     c1 = (c1 + buf[i]) % 0xff;
     c2 = (c2 + c1) % 0xff;
   }
-  uint8_t b0 = 255 - ((c1 + c2) % 255);
-  uint8_t b1 = 255 - ((c1 + b0) % 255);
-  return (uint16_t)(((uint16_t)b0 << 8) | b1);
+
+  uint8_t b[2];
+  b[0] = 0xff - ((c1 + c2) % 0xff);
+  b[1] = 0xff - ((c1 + b[0]) % 0xff);
+  return *((uint16_t *)(&b));
 }
 
 size_t cta2045_basic_pack(uint8_t op1, uint8_t op2, uint8_t *out, size_t cap) {
@@ -46,6 +49,25 @@ size_t cta2045_datalink_pack_max_payload_req(uint8_t *out, size_t cap) {
       .length = sys_cpu_to_be16(2),
       .opCode1 = MAXPAYLOAD_REQ_OP_CODE1,
       .opCode2 = CLEAR_OP_CODE2,
+  };
+  uint16_t cs = cta2045_checksum((const uint8_t *)&msg,
+                                 sizeof(msg) - sizeof(msg.checksum));
+  msg.checksum = sys_cpu_to_be16(cs);
+
+  memcpy(out, &msg, sizeof(msg));
+  return sizeof(msg);
+}
+
+size_t cta2045_intermediate_pack_get_info_req(uint8_t *out, size_t cap) {
+  if (!out || cap < sizeof(struct IntermediateMessage))
+    return 0;
+
+  struct IntermediateMessage msg = {
+      .msgType1 = INTERMEDIATE_MSG_TYP1,
+      .msgType2 = INTERMEDIATE_MSG_TYP2,
+      .length = sys_cpu_to_be16(2),
+      .opCode1 = GET_INFO_OP_CODE1,
+      .opCode2 = GET_INFO_OP_CODE2,
   };
   uint16_t cs = cta2045_checksum((const uint8_t *)&msg,
                                  sizeof(msg) - sizeof(msg.checksum));

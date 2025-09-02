@@ -21,21 +21,21 @@ static void send_demo_frames(void) {
   n = cta2045_datalink_pack_max_payload_req(buf, sizeof(buf));
   if (n) {
     LOG_INF("Send MaxPayloadReq");
-    (void)send_response(buf, n);
+    send_response(buf, n);
   }
   k_sleep(K_MSEC(50));
 
   n = cta2045_basic_pack(OPER_STATE_REQ, 0x00, buf, sizeof(buf));
   if (n) {
     LOG_INF("Send OperStateReq");
-    (void)send_response(buf, n);
+    send_response(buf, n);
   }
   k_sleep(K_MSEC(50));
 
   n = cta2045_intermediate_pack_get_utc_time_req(buf, sizeof(buf));
   if (n) {
     LOG_INF("Send GetUTCTime");
-    (void)send_response(buf, n);
+    send_response(buf, n);
   }
 }
 
@@ -57,6 +57,6 @@ void main(void) {
   send_demo_frames();
 
   while (1) {
-    k_sleep(K_SECONDS(1));
+    k_sleep(K_MSEC(10));
   }
 }

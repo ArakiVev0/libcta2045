@@ -223,6 +223,9 @@ CMAKE_OBJCOPY:FILEPATH=/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-objco
 CMAKE_OBJDUMP:FILEPATH=/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-objdump
 
 //Value Computed by CMake
+CMAKE_PROJECT_COMPAT_VERSION:STATIC=
+
+//Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
 
 //Value Computed by CMake
@@ -232,16 +235,16 @@ CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 CMAKE_PROJECT_NAME:STATIC=echoes
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION:STATIC=4.2.99
+CMAKE_PROJECT_VERSION:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MAJOR:STATIC=4
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_MINOR:STATIC=2
+CMAKE_PROJECT_VERSION_MINOR:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_VERSION_PATCH:STATIC=99
+CMAKE_PROJECT_VERSION_PATCH:STATIC=
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION_TWEAK:STATIC=
@@ -279,23 +282,23 @@ CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
 //If set, runtime paths are not added when using shared libraries.
 CMAKE_SKIP_RPATH:BOOL=NO
 
-//Flags used by the linker during the creation of static libraries
+//Flags used by the archiver during the creation of static libraries
 // during all build types.
 CMAKE_STATIC_LINKER_FLAGS:STRING=
 
-//Flags used by the linker during the creation of static libraries
+//Flags used by the archiver during the creation of static libraries
 // during DEBUG builds.
 CMAKE_STATIC_LINKER_FLAGS_DEBUG:STRING=
 
-//Flags used by the linker during the creation of static libraries
+//Flags used by the archiver during the creation of static libraries
 // during MINSIZEREL builds.
 CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL:STRING=
 
-//Flags used by the linker during the creation of static libraries
+//Flags used by the archiver during the creation of static libraries
 // during RELEASE builds.
 CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 
-//Flags used by the linker during the creation of static libraries
+//Flags used by the archiver during the creation of static libraries
 // during RELWITHDEBINFO builds.
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
@@ -464,9 +467,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/powerlab/app/echoes/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=4
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=0
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=1
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=3
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=/usr/bin/cmake
 //Path to cpack program executable.
@@ -601,7 +604,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_Dtc:INTERNAL=[/opt/zephyr-sdk/sysroots/x86_64-pokys
 //Details about finding GnuLd
 FIND_PACKAGE_MESSAGE_DETAILS_GnuLd:INTERNAL=[/opt/zephyr-sdk/arm-zephyr-eabi/arm-zephyr-eabi/bin/ld.bfd][v2.38()]
 //Details about finding Python3
-FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/usr/bin/python][found components: Interpreter ][v3.13.5(3.10)]
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/usr/bin/python][found components: Interpreter ][v3.13.7(3.10)]
 //Zephyr hardware model version
 HWM:INTERNAL=v2
 //Zephyr hardware model
@@ -619,7 +622,7 @@ _Python3_Compiler_REASON_FAILURE:INTERNAL=
 _Python3_Development_REASON_FAILURE:INTERNAL=
 _Python3_EXECUTABLE:INTERNAL=/usr/bin/python
 //Python3 Properties
-_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;13;5;64;<none>;cpython-313-x86_64-linux-gnu.so;abi3;/usr/lib/python3.13;/usr/lib/python3.13;/usr/lib/python3.13/site-packages;/usr/lib/python3.13/site-packages
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;13;7;64;<none>;cpython-313-x86_64-linux-gnu.so;abi3;/usr/lib/python3.13;/usr/lib/python3.13;/usr/lib/python3.13/site-packages;/usr/lib/python3.13/site-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=92d001ebd85fd64f8ee66a2b1890eecf
 //Interpreter reason failure
 _Python3_Interpreter_REASON_FAILURE:INTERNAL=
