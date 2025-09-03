@@ -1,10 +1,6 @@
 
 #include "cta2045_pack.h"
-#include "common.h"
 #include "cta2045_types.h"
-#include <stdint.h>
-#include <string.h>
-#include <zephyr/sys/byteorder.h>
 
 /* local checksum */
 static uint16_t cta2045_checksum(const uint8_t *buf, size_t len) {
@@ -18,6 +14,32 @@ static uint16_t cta2045_checksum(const uint8_t *buf, size_t len) {
   b[0] = 0xff - ((c1 + c2) % 0xff);
   b[1] = 0xff - ((c1 + b[0]) % 0xff);
   return *((uint16_t *)(&b));
+}
+
+size_t nak_pack(LinkLayerNakCode NakCode, uint8_t *out, size_t cap) {
+  if (!out || cap < sizeof(struct LinkLayerMessage))
+    return 0;
+
+  struct LinkLayerMessage msg = {
+      .msgType1 = LL_NAK_MSG_TYP1,
+      .msgType2 = NakCode,
+  };
+
+  memcpy(out, &msg, sizeof(msg));
+  return sizeof(msg);
+}
+
+size_t ack_pack(uint8_t *out, size_t cap) {
+  if (!out || cap < sizeof(struct LinkLayerMessage))
+    return 0;
+
+  struct LinkLayerMessage msg = {
+      .msgType1 = LL_ACK_MSG_TYP1,
+      .msgType2 = LL_ACK_MSG_TYP2,
+  };
+
+  memcpy(out, &msg, sizeof(msg));
+  return sizeof(msg);
 }
 
 size_t cta2045_basic_pack(uint8_t op1, uint8_t op2, uint8_t *out, size_t cap) {

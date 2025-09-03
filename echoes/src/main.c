@@ -37,6 +37,19 @@ static void send_demo_frames(void) {
     LOG_INF("Send GetUTCTime");
     send_response(buf, n);
   }
+  k_sleep(K_MSEC(50));
+
+  n = ack_pack(buf, sizeof(buf));
+  if (n) {
+    LOG_INF("Send LINK LAYER ACK");
+    send_response(buf, n);
+  }
+
+  n = nak_pack(REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
+  if (n) {
+    LOG_INF("Send LINK LAYER NAK");
+    send_response(buf, n);
+  }
 }
 
 void main(void) {

@@ -2,6 +2,8 @@
 #ifndef CTA2045_PACK_H
 #define CTA2045_PACK_H
 
+#include "common.h"
+#include "cta2045_types.h"
 #include <stddef.h>
 #include <stdint.h>
 
@@ -10,5 +12,7 @@ size_t cta2045_basic_pack(uint8_t op1, uint8_t op2, uint8_t *out,
                           size_t out_cap);
 size_t cta2045_datalink_pack_max_payload_req(uint8_t *out, size_t out_cap);
 size_t cta2045_intermediate_pack_get_utc_time_req(uint8_t *out, size_t out_cap);
+size_t ack_pack(uint8_t *out, size_t cap);
+size_t nak_pack(LinkLayerNakCode NakCode, uint8_t *out, size_t cap);
 
 #endif /* CTA2045_PACK_H */
