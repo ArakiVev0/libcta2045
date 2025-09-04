@@ -1,29 +1,14 @@
 #include "cta2045_resp.h"
 #include "cta2045_pack.h"
+#include "cta2045_types.h"
 #include "cta2045_uart.h"
-#include <stdint.h>
+#include <stddef.h>
+#include <stdio.h>
 #include <zephyr/sys/byteorder.h>
 
-void send_link_layer_NAK(LinkLayerNakCode error_code) {
-  uint8_t buf[64];
-  size_t n;
-
-  n = nak_pack(error_code, buf, sizeof(buf));
-  if (n) {
-    send_response(buf, n);
-  }
-}
-
-void send_link_layer_ACK() {
-  uint8_t buf[64];
-  size_t n;
-  n = ack_pack(buf, sizeof(buf));
-  if (n) {
-    send_response(buf, n);
-  }
-}
-
 void process_response(struct MessageHeader *msg_header) {
+  uint8_t buf[64];
+  size_t n;
   if (msg_header->msgType1 == BASIC_MSG_TYP1 ||
       msg_header->msgType2 == BASIC_MSG_TYP2) {
     struct BasicMessage *basic = (struct BasicMessage *)msg_header;
@@ -38,132 +23,228 @@ void process_response(struct MessageHeader *msg_header) {
         (struct IntermediateMessage *)msg_header;
     process_intermediate_message(intermediate);
   } else {
-    send_link_layer_NAK(LLN_REQUEST_NOT_SUPPORTED);
+    n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
+    if (n) {
+      send_response(buf, sizeof(buf));
+    }
   }
 }
 
 void process_basic_message(struct BasicMessage *msg) {
+  uint8_t buf[64];
+  size_t n;
   switch (msg->opCode1) {
+
   case APP_ACK:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    printf("Hello world\n");
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case APP_NAK:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case OPER_STATE_RESP:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case CUST_OVERRIDE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
 
-    struct BasicMessage resp;
-    resp.msgType1 = BASIC_MSG_TYP1;
-    resp.msgType2 = BASIC_MSG_TYP2;
-    resp.length = sys_cpu_to_be16(2);
-    resp.opCode1 = APP_ACK;
-    resp.opCode2 = CUST_OVERRIDE;
-    resp.checksum = checksum_calc((uint8_t *)&resp, sizeof(resp) - 2);
-    send_response((uint8_t *)&resp, sizeof(resp));
+    basic_pack(APP_ACK, CUST_OVERRIDE, buf, sizeof(buf));
 
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   default:
-    send_link_layer_NAK(LLN_UNSUPPORTED_MESSAGE_TYPE);
+    n = nak_pack(LLN_UNSUPPORTED_MESSAGE_TYPE, buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
   }
 }
 
 void process_datalink_message(struct DataLinkMessage *msg) {
   DataLinkTypeCode messageType = ConvertDataLinkType(msg->opCode1);
+
+  uint8_t buf[64];
+  size_t n;
+
   switch (messageType) {
+
   case DLT_MAX_PAYLOAD_REQUEST:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
 
-    struct DataLinkMessage resp;
-    resp.msgType1 = DATALINK_MSG_TYP1;
-    resp.msgType2 = DATALINK_MSG_TYP2;
-    resp.length = sys_cpu_to_be16(2);
-    resp.opCode1 = MAXPAYLOAD_RESP;
-    resp.opCode2 = (uint8_t)get_max_payload_length();
-    resp.checksum = checksum_calc((uint8_t *)&resp, sizeof(resp) - 2);
+    n = datalink_pack_max_payload_req(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
 
-    send_response((uint8_t *)&resp, sizeof(resp));
     break;
   case DLT_MAX_PAYLOAD_RESPONSE:
-    // MaxPayloadLengthCode maxPayloadLength =
-    // convert_max_payload_length(msg->opCode2);
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
   default:
-    send_link_layer_NAK(LLN_REQUEST_NOT_SUPPORTED);
+    n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
   }
 }
 
 void process_intermediate_message(struct IntermediateMessage *msg) {
   uint16_t intermediateType = *((uint16_t *)(&(msg->opCode1)));
-
+  uint8_t buf[64];
+  size_t n;
   switch (intermediateType) {
   case IT_INFO_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_GET_UTC_TIME_REQUEST:
     if (sys_cpu_to_be16(msg->length) == 2) {
-      send_link_layer_ACK();
+      n = ack_pack(buf, sizeof(buf));
+      if (n) {
+        send_response(buf, n);
+      }
       struct GetUTCTimeResponse resp;
 
-      resp.utcSeconds = 0;
-      resp.timezoneOffsetQuarterHours = 0;
-      resp.dstOffsetQuarterHours = 0;
-
-      resp.msgType1 = INTERMEDIATE_MSG_TYP1;
-      resp.msgType2 = INTERMEDIATE_MSG_TYP2;
-      resp.length = sys_be16_to_cpu(sizeof(msg->length) - 6);
-      resp.opCode1 = GET_UTC_TIME;
-      resp.opCode2 = OP_CODE2_REPLY;
-      resp.responseCode = OP_CODE2_REPLY;
-      resp.checksum = checksum_calc((uint8_t *)&resp, sizeof(resp) - 2);
-
-      send_response((uint8_t *)&resp, sizeof(resp));
+      n = intermediate_pack_get_utc_time_resp(buf, sizeof(buf));
+      if (n) {
+        send_response((uint8_t *)&resp, sizeof(resp));
+      }
     } else {
-      send_link_layer_NAK(LLN_REQUEST_NOT_SUPPORTED);
+      n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
+      if (n) {
+        send_response(buf, n);
+      }
     }
     break;
 
   case IT_COMMODITY_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_SET_ENERGY_PRICE_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_GET_SET_TEMPERATURE_OFFSET_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_GET_SET_SETPOINT_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_GET_PRESENT_TEMPERATURE_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_START_CYCLING_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   case IT_TERMINATE_CYCLING_RESPONSE:
-    send_link_layer_ACK();
+    n = ack_pack(buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
 
   default:
-    send_link_layer_NAK(LLN_REQUEST_NOT_SUPPORTED);
+    n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
+    if (n) {
+      send_response(buf, n);
+    }
     break;
+  }
+}
+
+IntermediateTypeCode ConvertIntermediate(uint16_t intermediateType) {
+  uint16_t host = sys_be16_to_cpu(intermediateType);
+  switch (host) {
+  case IT_INFO_REQUEST:
+    return IT_INFO_REQUEST;
+  case IT_INFO_RESPONSE:
+    return IT_INFO_RESPONSE;
+  case IT_GET_UTC_TIME_REQUEST:
+    return IT_GET_UTC_TIME_REQUEST;
+  case IT_COMMODITY_REQUEST:
+    return IT_COMMODITY_REQUEST;
+  case IT_COMMODITY_RESPONSE:
+    return IT_COMMODITY_RESPONSE;
+  case IT_SET_ENERGY_PRICE_RESPONSE:
+    return IT_SET_ENERGY_PRICE_RESPONSE;
+  case IT_GET_SET_TEMPERATURE_OFFSET_REQUEST:
+    return IT_GET_SET_TEMPERATURE_OFFSET_REQUEST;
+  case IT_GET_SET_TEMPERATURE_OFFSET_RESPONSE:
+    return IT_GET_SET_TEMPERATURE_OFFSET_RESPONSE;
+  case IT_GET_SET_SETPOINT_RESPONSE:
+    return IT_GET_SET_SETPOINT_RESPONSE;
+  case IT_GET_PRESENT_TEMPERATURE_RESPONSE:
+    return IT_GET_PRESENT_TEMPERATURE_RESPONSE;
+  case IT_START_CYCLING_RESPONSE:
+    return IT_START_CYCLING_RESPONSE;
+  case IT_TERMINATE_CYCLING_RESPONSE:
+    return IT_TERMINATE_CYCLING_RESPONSE;
+  default:
+    return IT_INVALID;
+  }
+}
+
+DataLinkTypeCode ConvertDataLinkType(uint8_t datalinkType) {
+  switch (datalinkType) {
+  case DLT_MAX_PAYLOAD_REQUEST:
+    return DLT_MAX_PAYLOAD_REQUEST;
+  case DLT_MAX_PAYLOAD_RESPONSE:
+    return DLT_MAX_PAYLOAD_RESPONSE;
+  case DLT_SEND_NEXT_COMMAND_TO_SLOT:
+    return DLT_SEND_NEXT_COMMAND_TO_SLOT;
+  default:
+    return DLT_INVALID;
   }
 }

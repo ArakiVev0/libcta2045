@@ -8,6 +8,4 @@ void process_datalink_message(struct DataLinkMessage *msg);
 void process_intermediate_message(struct IntermediateMessage *msg);
 
 IntermediateTypeCode ConvertIntermediateType(uint16_t intermediateType);
-DataLinkTypeCode ConvertDataLinkType(uint16_t datalinkType);
-
-void send_link_layer_ACK();
+DataLinkTypeCode ConvertDataLinkType(uint8_t datalinkType);

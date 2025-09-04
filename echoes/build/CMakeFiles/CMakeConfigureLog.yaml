@@ -116,6 +116,7 @@ events:
     found: null
     search_context:
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -183,6 +184,7 @@ events:
     found: null
     search_context:
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -213,6 +215,7 @@ events:
     names:
       - "ccache"
     candidate_directories:
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -222,11 +225,13 @@ events:
       - "/usr/bin/vendor_perl/"
       - "/usr/bin/core_perl/"
     searched_directories:
+      - "/home/powerlab/.local/share/nvim/mason/bin/ccache"
       - "/home/powerlab/.local/share/pnpm/ccache"
       - "/usr/local/bin/ccache"
     found: "/usr/bin/ccache"
     search_context:
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -297,6 +302,14 @@ events:
         reason: "no_exist"
       -
         path: "/home/powerlab/app/echoes/build/CMakeFiles/pkgRedirects/zephyr-sdk-config.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/powerlab/.local/share/nvim/mason/Zephyr-sdkConfig.cmake"
+        mode: "config"
+        reason: "no_exist"
+      -
+        path: "/home/powerlab/.local/share/nvim/mason/zephyr-sdk-config.cmake"
         mode: "config"
         reason: "no_exist"
       -
@@ -414,6 +427,7 @@ events:
     found: null
     search_context:
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -448,6 +462,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -460,6 +475,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/gperf"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/gperf"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/gperf"
+      - "/home/powerlab/.local/share/nvim/mason/bin/gperf"
       - "/home/powerlab/.local/share/pnpm/gperf"
       - "/usr/local/bin/gperf"
     found: "/usr/bin/gperf"
@@ -467,6 +483,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -501,6 +518,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -514,6 +532,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -548,6 +567,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -561,6 +581,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -597,6 +618,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
       - "/home/powerlab/app/bootloader/mcuboot/scripts/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -617,6 +639,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -651,6 +674,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -663,6 +687,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/winpty"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/winpty"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/winpty"
+      - "/home/powerlab/.local/share/nvim/mason/bin/winpty"
       - "/home/powerlab/.local/share/pnpm/winpty"
       - "/usr/local/bin/winpty"
       - "/usr/bin/winpty"
@@ -676,6 +701,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -714,6 +740,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -752,6 +779,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -786,6 +814,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -799,6 +828,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -837,6 +867,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -875,6 +906,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -913,6 +945,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -951,6 +984,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -989,6 +1023,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1027,6 +1062,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1065,6 +1101,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1103,6 +1140,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1141,6 +1179,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1179,6 +1218,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1217,6 +1257,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1255,6 +1296,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1289,6 +1331,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1302,6 +1345,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/uname"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/uname"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/uname"
+      - "/home/powerlab/.local/share/nvim/mason/bin/uname"
       - "/home/powerlab/.local/share/pnpm/uname"
       - "/usr/local/bin/uname"
     found: "/usr/bin/uname"
@@ -1309,6 +1353,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1328,7 +1373,7 @@ events:
       - "CMakeLists.txt:3 (find_package)"
     message: |
       The target system is: Generic - 4.2.99 - arm
-      The host system is: Linux - 6.16.1-zen1-1-zen - x86_64
+      The host system is: Linux - 6.16.4-zen1-1-zen - x86_64
   -
     kind: "find-v1"
     backtrace:
@@ -1357,6 +1402,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1375,6 +1421,9 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/ninja-build"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/ninja"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/samu"
+      - "/home/powerlab/.local/share/nvim/mason/bin/ninja-build"
+      - "/home/powerlab/.local/share/nvim/mason/bin/ninja"
+      - "/home/powerlab/.local/share/nvim/mason/bin/samu"
       - "/home/powerlab/.local/share/pnpm/ninja-build"
       - "/home/powerlab/.local/share/pnpm/ninja"
       - "/home/powerlab/.local/share/pnpm/samu"
@@ -1387,6 +1436,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1429,6 +1479,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1495,6 +1546,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1555,6 +1607,7 @@ events:
       - "dlltool"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1565,6 +1618,7 @@ events:
       - "/usr/bin/core_perl/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-dlltool"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-dlltool"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-dlltool"
       - "/usr/local/bin/arm-zephyr-eabi-dlltool"
       - "/usr/bin/arm-zephyr-eabi-dlltool"
@@ -1574,6 +1628,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-dlltool"
       - "/usr/bin/core_perl/arm-zephyr-eabi-dlltool"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/dlltool"
+      - "/home/powerlab/.local/share/nvim/mason/bin/dlltool"
       - "/home/powerlab/.local/share/pnpm/dlltool"
       - "/usr/local/bin/dlltool"
       - "/usr/bin/dlltool"
@@ -1587,6 +1642,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1621,6 +1677,7 @@ events:
       - "addr2line"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1634,6 +1691,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1668,6 +1726,7 @@ events:
       - "tapi"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1678,6 +1737,7 @@ events:
       - "/usr/bin/core_perl/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-tapi"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-tapi"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-tapi"
       - "/usr/local/bin/arm-zephyr-eabi-tapi"
       - "/usr/bin/arm-zephyr-eabi-tapi"
@@ -1687,6 +1747,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-tapi"
       - "/usr/bin/core_perl/arm-zephyr-eabi-tapi"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/tapi"
+      - "/home/powerlab/.local/share/nvim/mason/bin/tapi"
       - "/home/powerlab/.local/share/pnpm/tapi"
       - "/usr/local/bin/tapi"
       - "/usr/bin/tapi"
@@ -1700,6 +1761,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1736,6 +1798,7 @@ events:
       - "arm-zephyr-eabi-gcc-ar"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1746,6 +1809,7 @@ events:
       - "/usr/bin/core_perl/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar-12.2"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar-12.2"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar-12.2"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar-12.2"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar-12.2"
@@ -1755,6 +1819,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ar-12.2"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ar-12.2"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar-12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar-12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar-12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar-12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar-12"
@@ -1764,6 +1829,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ar-12"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ar-12"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar12"
@@ -1777,6 +1843,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1813,6 +1880,7 @@ events:
       - "arm-zephyr-eabi-gcc-ranlib"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -1823,6 +1891,7 @@ events:
       - "/usr/bin/core_perl/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
@@ -1832,6 +1901,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib-12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib-12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib-12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib-12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib-12"
@@ -1841,6 +1911,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ranlib-12"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ranlib-12"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib12"
@@ -1854,6 +1925,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1896,6 +1968,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -1962,6 +2035,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2024,6 +2098,7 @@ events:
       - "arm-zephyr-eabi-gcc-ar"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2034,6 +2109,7 @@ events:
       - "/usr/bin/core_perl/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar-12.2"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar-12.2"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar-12.2"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar-12.2"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar-12.2"
@@ -2043,6 +2119,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ar-12.2"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ar-12.2"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar-12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar-12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar-12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar-12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar-12"
@@ -2052,6 +2129,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ar-12"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ar-12"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar12"
@@ -2065,6 +2143,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2101,6 +2180,7 @@ events:
       - "arm-zephyr-eabi-gcc-ranlib"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2111,6 +2191,7 @@ events:
       - "/usr/bin/core_perl/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib-12.2"
@@ -2120,6 +2201,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ranlib-12.2"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib-12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib-12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib-12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib-12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib-12"
@@ -2129,6 +2211,7 @@ events:
       - "/usr/bin/vendor_perl/arm-zephyr-eabi-gcc-ranlib-12"
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ranlib-12"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib12"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib12"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib12"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib12"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib12"
@@ -2142,6 +2225,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2180,6 +2264,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2236,6 +2321,7 @@ events:
       - "arm-zephyr-eabi-gcc-ar"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2247,6 +2333,7 @@ events:
       - "/bin/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar-"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar-"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar-"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar-"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar-"
@@ -2257,6 +2344,7 @@ events:
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ar-"
       - "/bin/arm-zephyr-eabi-gcc-ar-"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ar-"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ar-"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ar-"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ar-"
       - "/usr/bin/arm-zephyr-eabi-gcc-ar-"
@@ -2271,6 +2359,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2310,6 +2399,7 @@ events:
       - "arm-zephyr-eabi-gcc-ranlib"
     candidate_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2321,6 +2411,7 @@ events:
       - "/bin/"
     searched_directories:
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib-"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib-"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib-"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib-"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib-"
@@ -2331,6 +2422,7 @@ events:
       - "/usr/bin/core_perl/arm-zephyr-eabi-gcc-ranlib-"
       - "/bin/arm-zephyr-eabi-gcc-ranlib-"
       - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc-ranlib-"
+      - "/home/powerlab/.local/share/nvim/mason/bin/arm-zephyr-eabi-gcc-ranlib-"
       - "/home/powerlab/.local/share/pnpm/arm-zephyr-eabi-gcc-ranlib-"
       - "/usr/local/bin/arm-zephyr-eabi-gcc-ranlib-"
       - "/usr/bin/arm-zephyr-eabi-gcc-ranlib-"
@@ -2345,6 +2437,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2377,6 +2470,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2390,6 +2484,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/ccache"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/ccache"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/ccache"
+      - "/home/powerlab/.local/share/nvim/mason/bin/ccache"
       - "/home/powerlab/.local/share/pnpm/ccache"
       - "/usr/local/bin/ccache"
     found: "/usr/bin/ccache"
@@ -2397,6 +2492,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2431,6 +2527,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2445,6 +2542,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/gen_kobject_list"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/gen_kobject_list"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/gen_kobject_list"
+      - "/home/powerlab/.local/share/nvim/mason/bin/gen_kobject_list"
       - "/home/powerlab/.local/share/pnpm/gen_kobject_list"
       - "/usr/local/bin/gen_kobject_list"
       - "/usr/bin/gen_kobject_list"
@@ -2458,6 +2556,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/gen_kobject_list.py"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/gen_kobject_list.py"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/gen_kobject_list.py"
+      - "/home/powerlab/.local/share/nvim/mason/bin/gen_kobject_list.py"
       - "/home/powerlab/.local/share/pnpm/gen_kobject_list.py"
       - "/usr/local/bin/gen_kobject_list.py"
       - "/usr/bin/gen_kobject_list.py"
@@ -2472,6 +2571,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2504,6 +2604,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2517,6 +2618,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/puncover"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/puncover"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/puncover"
+      - "/home/powerlab/.local/share/nvim/mason/bin/puncover"
       - "/home/powerlab/.local/share/pnpm/puncover"
       - "/usr/local/bin/puncover"
       - "/usr/bin/puncover"
@@ -2531,6 +2633,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2563,6 +2666,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/"
+      - "/home/powerlab/.local/share/nvim/mason/bin/"
       - "/home/powerlab/.local/share/pnpm/"
       - "/usr/local/bin/"
       - "/usr/bin/"
@@ -2576,6 +2680,7 @@ events:
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/pahole"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/sbin/pahole"
       - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/pahole"
+      - "/home/powerlab/.local/share/nvim/mason/bin/pahole"
       - "/home/powerlab/.local/share/pnpm/pahole"
       - "/usr/local/bin/pahole"
       - "/usr/bin/pahole"
@@ -2590,6 +2695,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"
@@ -2686,49 +2792,7 @@ events:
       CMAKE_PREFIX_PATH:
         - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
       ENV{PATH}:
-        - "/home/powerlab/.local/share/pnpm"
-        - "/usr/local/bin"
-        - "/usr/bin"
-        - "/usr/local/sbin"
-        - "/var/lib/flatpak/exports/bin"
-        - "/usr/bin/site_perl"
-        - "/usr/bin/vendor_perl"
-        - "/usr/bin/core_perl"
-      CMAKE_INSTALL_PREFIX: "/usr/local"
-...
-
----
-events:
-  -
-    kind: "find-v1"
-    backtrace:
-      - "/home/powerlab/app/zephyr/cmake/compiler/gcc/target.cmake:8 (find_program)"
-      - "/home/powerlab/app/zephyr/cmake/modules/FindTargetTools.cmake:103 (include)"
-      - "/home/powerlab/app/zephyr/cmake/modules/kernel.cmake:25 (find_package)"
-      - "/home/powerlab/app/zephyr/cmake/modules/zephyr_default.cmake:140 (include)"
-      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
-      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:97 (include_boilerplate)"
-      - "CMakeLists.txt:3 (find_package)"
-    mode: "program"
-    variable: "CMAKE_C_COMPILER"
-    description: "Path to a program."
-    settings:
-      SearchFramework: "NEVER"
-      SearchAppBundle: "NEVER"
-      CMAKE_FIND_USE_CMAKE_PATH: true
-      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
-      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
-      CMAKE_FIND_USE_INSTALL_PREFIX: true
-    names:
-      - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
-    candidate_directories:
-      - "/opt/zephyr-sdk/"
-    found: "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
-    search_context:
-      CMAKE_PREFIX_PATH:
-        - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
-      ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
         - "/home/powerlab/.local/share/pnpm"
         - "/usr/local/bin"
         - "/usr/bin"

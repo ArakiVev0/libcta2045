@@ -76,6 +76,19 @@ struct IntermediateMessage {
   uint16_t checksum;
 } __attribute__((packed));
 
+struct GetUTCTimeResponse {
+  uint8_t msgType1;
+  uint8_t msgType2;
+  uint16_t length;
+  uint8_t opCode1;
+  uint8_t opCode2;
+  uint8_t responseCode;
+  uint16_t utcSeconds;
+  uint8_t timezoneOffsetQuarterHours;
+  uint8_t dstOffsetQuarterHours;
+  uint16_t checksum;
+} __attribute__((packed));
+
 typedef enum {
   LLN_NO_REASON,
   LLN_INVALID_BYTE,

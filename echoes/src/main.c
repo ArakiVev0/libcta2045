@@ -1,8 +1,10 @@
+#include <stdint.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 
 #include "common.h"
 #include "cta2045_pack.h"
+#include "cta2045_resp.h"
 #include "cta2045_types.h"
 #include "cta2045_uart.h"
 
@@ -18,21 +20,21 @@ static void send_demo_frames(void) {
   uint8_t buf[64];
   size_t n;
 
-  n = cta2045_datalink_pack_max_payload_req(buf, sizeof(buf));
+  n = datalink_pack_max_payload_req(buf, sizeof(buf));
   if (n) {
     LOG_INF("Send MaxPayloadReq");
     send_response(buf, n);
   }
   k_sleep(K_MSEC(50));
 
-  n = cta2045_basic_pack(OPER_STATE_REQ, 0x00, buf, sizeof(buf));
+  n = basic_pack(OPER_STATE_REQ, 0x00, buf, sizeof(buf));
   if (n) {
     LOG_INF("Send OperStateReq");
     send_response(buf, n);
   }
   k_sleep(K_MSEC(50));
 
-  n = cta2045_intermediate_pack_get_utc_time_req(buf, sizeof(buf));
+  n = intermediate_pack_get_utc_time_req(buf, sizeof(buf));
   if (n) {
     LOG_INF("Send GetUTCTime");
     send_response(buf, n);
@@ -45,11 +47,19 @@ static void send_demo_frames(void) {
     send_response(buf, n);
   }
 
-  n = nak_pack(REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
+  n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
   if (n) {
     LOG_INF("Send LINK LAYER NAK");
     send_response(buf, n);
   }
+}
+
+static void response_test(void) {
+  uint8_t buf[64];
+  basic_pack(0x21, 0x01, buf, sizeof(buf));
+  process_response(buf);
+  basic_pack(APP_ACK, 0x01, buf, sizeof(buf));
+  process_response(buf);
 }
 
 void main(void) {
@@ -67,7 +77,8 @@ void main(void) {
   /* Optional: give RX thread a moment */
   k_sleep(K_MSEC(100));
 
-  send_demo_frames();
+  // send_demo_frames();
+  response_test();
 
   while (1) {
     k_sleep(K_MSEC(10));
