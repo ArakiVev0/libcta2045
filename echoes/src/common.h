@@ -3,8 +3,6 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <string.h>
-#include <zephyr/sys/byteorder.h>
 
 /* ---------- Build-time constants ---------- */
 #ifndef RING_BUF_SIZE

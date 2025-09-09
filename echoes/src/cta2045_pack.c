@@ -5,16 +5,14 @@
 #include <stdint.h>
 
 uint16_t checksum_calc(const uint8_t *buf, size_t len) {
-  uint32_t c1 = 0xaa, c2 = 0;
+  uint32_t c1 = 0xAA, c2 = 0;
   for (size_t i = 0; i < len; i++) {
-    c1 = (c1 + buf[i]) % 0xff;
-    c2 = (c2 + c1) % 0xff;
+    c1 = (c1 + buf[i]) % 0xFF;
+    c2 = (c2 + c1) % 0xFF;
   }
-
-  uint8_t b[2];
-  b[0] = 0xff - ((c1 + c2) % 0xff);
-  b[1] = 0xff - ((c1 + b[0]) % 0xff);
-  return *((uint16_t *)(&b));
+  uint8_t hi = (uint8_t)(0xFF - ((c1 + c2) % 0xFF));
+  uint8_t lo = (uint8_t)(0xFF - ((c1 + hi) % 0xFF));
+  return (uint16_t)((hi << 8) | lo); // BE: HI first
 }
 
 size_t nak_pack(LinkLayerNakCode NakCode, uint8_t *out, size_t cap) {

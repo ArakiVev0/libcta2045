@@ -2803,3 +2803,179 @@ events:
         - "/usr/bin/core_perl"
       CMAKE_INSTALL_PREFIX: "/usr/local"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/powerlab/app/zephyr/cmake/compiler/gcc/target.cmake:8 (find_program)"
+      - "/home/powerlab/app/zephyr/cmake/modules/FindTargetTools.cmake:103 (include)"
+      - "/home/powerlab/app/zephyr/cmake/modules/kernel.cmake:25 (find_package)"
+      - "/home/powerlab/app/zephyr/cmake/modules/zephyr_default.cmake:140 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:97 (include_boilerplate)"
+      - "CMakeLists.txt:3 (find_package)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    candidate_directories:
+      - "/opt/zephyr-sdk/"
+    found: "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
+      ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
+        - "/home/powerlab/.local/share/pnpm"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/var/lib/flatpak/exports/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/powerlab/app/zephyr/cmake/compiler/gcc/target.cmake:8 (find_program)"
+      - "/home/powerlab/app/zephyr/cmake/modules/FindTargetTools.cmake:103 (include)"
+      - "/home/powerlab/app/zephyr/cmake/modules/kernel.cmake:25 (find_package)"
+      - "/home/powerlab/app/zephyr/cmake/modules/zephyr_default.cmake:140 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:97 (include_boilerplate)"
+      - "CMakeLists.txt:3 (find_package)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    candidate_directories:
+      - "/opt/zephyr-sdk/"
+    found: "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
+      ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
+        - "/home/powerlab/.local/share/pnpm"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/var/lib/flatpak/exports/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/powerlab/app/zephyr/cmake/compiler/gcc/target.cmake:8 (find_program)"
+      - "/home/powerlab/app/zephyr/cmake/modules/FindTargetTools.cmake:103 (include)"
+      - "/home/powerlab/app/zephyr/cmake/modules/kernel.cmake:25 (find_package)"
+      - "/home/powerlab/app/zephyr/cmake/modules/zephyr_default.cmake:140 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:97 (include_boilerplate)"
+      - "CMakeLists.txt:3 (find_package)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    candidate_directories:
+      - "/opt/zephyr-sdk/"
+    found: "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
+      ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
+        - "/home/powerlab/.local/share/pnpm"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/var/lib/flatpak/exports/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "/home/powerlab/app/zephyr/cmake/compiler/gcc/target.cmake:8 (find_program)"
+      - "/home/powerlab/app/zephyr/cmake/modules/FindTargetTools.cmake:103 (include)"
+      - "/home/powerlab/app/zephyr/cmake/modules/kernel.cmake:25 (find_package)"
+      - "/home/powerlab/app/zephyr/cmake/modules/zephyr_default.cmake:140 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:66 (include)"
+      - "/home/powerlab/app/zephyr/share/zephyr-package/cmake/ZephyrConfig.cmake:97 (include_boilerplate)"
+      - "CMakeLists.txt:3 (find_package)"
+    mode: "program"
+    variable: "CMAKE_C_COMPILER"
+    description: "Path to a program."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    candidate_directories:
+      - "/opt/zephyr-sdk/"
+    found: "/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc"
+    search_context:
+      CMAKE_PREFIX_PATH:
+        - "/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr"
+      ENV{PATH}:
+        - "/home/powerlab/.local/share/nvim/mason/bin"
+        - "/home/powerlab/.local/share/pnpm"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/usr/local/sbin"
+        - "/var/lib/flatpak/exports/bin"
+        - "/usr/bin/site_perl"
+        - "/usr/bin/vendor_perl"
+        - "/usr/bin/core_perl"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+...

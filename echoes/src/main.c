@@ -10,7 +10,7 @@
 
 LOG_MODULE_REGISTER(app, LOG_LEVEL_INF);
 
-#define CTA_THREAD_STACK_SIZE 2048
+#define CTA_THREAD_STACK_SIZE 4096
 #define CTA_THREAD_PRIO 7
 
 K_THREAD_STACK_DEFINE(cta_stack, CTA_THREAD_STACK_SIZE);
@@ -54,14 +54,6 @@ static void send_demo_frames(void) {
   }
 }
 
-static void response_test(void) {
-  uint8_t buf[64];
-  basic_pack(0x21, 0x01, buf, sizeof(buf));
-  process_response(buf);
-  basic_pack(APP_ACK, 0x01, buf, sizeof(buf));
-  process_response(buf);
-}
-
 void main(void) {
   LOG_INF("CTA-2045 demo starting…");
 
@@ -78,7 +70,6 @@ void main(void) {
   k_sleep(K_MSEC(100));
 
   // send_demo_frames();
-  response_test();
 
   while (1) {
     k_sleep(K_MSEC(10));

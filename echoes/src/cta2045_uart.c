@@ -1,7 +1,10 @@
 #include "cta2045_uart.h"
 #include "common.h"
+#include "cta2045_pack.h"
+#include "cta2045_resp.h"
 #include "cta2045_types.h"
 
+#include <stddef.h>
 #include <stdint.h>
 #include <string.h>
 #include <zephyr/device.h>
@@ -11,6 +14,17 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/sys/byteorder.h>
 #include <zephyr/sys/ring_buffer.h>
+
+#define CTA_MAX_PAYLOAD 256u
+#define CTA_HDR_ONLY_SIZE 2u
+#define CTA_LEN_SIZE 2u // BE payload length on-wire
+#define CTA_CSUM_SIZE 2u
+#define CTA_MIN_FRAME (CTA_HDR_ONLY_SIZE + CTA_LEN_SIZE + CTA_CSUM_SIZE) // 6
+#define CTA_RX_BUF_SZ 512u // fits 4096 payload + header/len/csum, with margin
+
+// Offsets relative to start of a frame (MessageHeader*)
+#define CTA_OFF_LEN (CTA_HDR_ONLY_SIZE)                    // 2..3
+#define CTA_OFF_PAYLOAD (CTA_HDR_ONLY_SIZE + CTA_LEN_SIZE) // 4..(4+len-1)
 
 LOG_MODULE_REGISTER(cta2045_uart, LOG_LEVEL_INF);
 
@@ -24,6 +38,15 @@ static struct ring_buf rx_rb;
 static uint8_t tx_ring_buf_data[TX_RING_BUF_SIZE];
 static struct ring_buf tx_rb;
 
+uint8_t rx_assemble_buf[CTA_RX_BUF_SZ];
+size_t rx_assemble_len = 0;
+
+static inline bool is_ll_ack(const struct MessageHeader *h) {
+  return h->msgType1 == LL_ACK_MSG_TYP1 && h->msgType2 == LL_ACK_MSG_TYP2;
+}
+static inline bool is_ll_nak(const struct MessageHeader *h) {
+  return h->msgType1 == LL_NAK_MSG_TYP1;
+}
 /* Simple RX semaphore (signal from ISR) */
 K_SEM_DEFINE(uart_sem, 0, 1);
 
@@ -108,12 +131,99 @@ void cta2045_uart_thread(void *p1, void *p2, void *p3) {
   for (;;) {
     k_sem_take(&uart_sem, K_FOREVER);
 
-    /* In your full implementation, drain rx_rb here,
-       assemble frames, verify checksum, and dispatch handlers. */
-    uint8_t tmp[64];
-    while (ring_buf_get(&rx_rb, tmp, sizeof(tmp)) != 0) {
-      /* placeholder: you can parse/process here or in another module */
-      /* LOG_HEXDUMP_DBG(tmp, got, "RX chunk"); */
+    uint8_t chunk[64];
+    size_t bytes_read;
+    while ((bytes_read = ring_buf_get(&rx_rb, chunk, sizeof(chunk))) != 0) {
+      LOG_HEXDUMP_DBG(chunk, bytes_read, "RX chunk");
+
+      // Ensure assembler has room
+      if (bytes_read > (CTA_RX_BUF_SZ - rx_assemble_len)) {
+        size_t need = bytes_read - (CTA_RX_BUF_SZ - rx_assemble_len);
+        if (need > rx_assemble_len)
+          need = rx_assemble_len;
+        if (need) {
+          memmove(rx_assemble_buf, rx_assemble_buf + need,
+                  rx_assemble_len - need);
+          rx_assemble_len -= need;
+          LOG_WRN("CTA2045: assembler overflow, dropped %zu byte(s)", need);
+        }
+      }
+
+      // Append new data
+      memcpy(rx_assemble_buf + rx_assemble_len, chunk, bytes_read);
+      rx_assemble_len += bytes_read;
+
+      for (;;) {
+
+        // --- Fast-path: header-only LL frames (2 bytes total) ---
+
+        if (rx_assemble_len >= 2) {
+          struct MessageHeader *h2 = (struct MessageHeader *)rx_assemble_buf;
+          if (is_ll_ack(h2)) {
+            LOG_INF("LL-ACK (header-only) received");
+            // TODO: k_sem_give(&ll_ack_sem); // if you track TX acks
+            // consume 2 bytes
+            if (2 < rx_assemble_len) {
+              memmove(rx_assemble_buf, rx_assemble_buf + 2,
+                      rx_assemble_len - 2);
+            }
+            rx_assemble_len -= 2;
+            continue; // check if another frame is ready
+          }
+          if (is_ll_nak(h2)) {
+            LOG_INF("LL-NAK (header-only) received");
+            // TODO: record NAK, trigger retry/backoff, etc.
+            if (2 < rx_assemble_len) {
+              memmove(rx_assemble_buf, rx_assemble_buf + 2,
+                      rx_assemble_len - 2);
+            }
+            rx_assemble_len -= 2;
+            continue;
+          }
+        }
+
+        // --- Normal path: full frames need hdr+len+csum (>= 6 bytes) ---
+        if (rx_assemble_len < CTA_MIN_FRAME)
+          break;
+
+        // (unchanged) read length at offset +2, sanity, checksum, etc...
+        uint16_t payload_len = sys_get_be16(rx_assemble_buf + CTA_OFF_LEN);
+        if ((payload_len > CTA_MAX_PAYLOAD) ||
+            (payload_len > (CTA_RX_BUF_SZ - CTA_MIN_FRAME))) {
+          memmove(rx_assemble_buf, rx_assemble_buf + 1, rx_assemble_len - 1);
+          rx_assemble_len -= 1;
+          LOG_WRN("CTA2045: bad length %u, resync by 1 byte", payload_len);
+          continue;
+        }
+
+        size_t total_len =
+            CTA_HDR_ONLY_SIZE + CTA_LEN_SIZE + payload_len + CTA_CSUM_SIZE;
+        if (rx_assemble_len < total_len)
+          break;
+
+        uint16_t calc =
+            checksum_calc(rx_assemble_buf, total_len - CTA_CSUM_SIZE);
+        uint16_t got =
+            sys_get_be16(rx_assemble_buf + (total_len - CTA_CSUM_SIZE));
+        if (calc != got) {
+          LOG_WRN(
+              "CTA2045: checksum mismatch (calc=0x%04x got=0x%04x) — resync",
+              calc, got);
+          memmove(rx_assemble_buf, rx_assemble_buf + 1, rx_assemble_len - 1);
+          rx_assemble_len -= 1;
+          continue;
+        }
+
+        struct MessageHeader *hdr = (struct MessageHeader *)rx_assemble_buf;
+        process_response(hdr);
+
+        // consume full frame
+        if (total_len < rx_assemble_len) {
+          memmove(rx_assemble_buf, rx_assemble_buf + total_len,
+                  rx_assemble_len - total_len);
+        }
+        rx_assemble_len -= total_len;
+      }
     }
   }
 }

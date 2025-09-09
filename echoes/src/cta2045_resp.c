@@ -2,23 +2,28 @@
 #include "cta2045_pack.h"
 #include "cta2045_types.h"
 #include "cta2045_uart.h"
+#include "zephyr/sys/printk.h"
 #include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <zephyr/sys/byteorder.h>
 
 void process_response(struct MessageHeader *msg_header) {
   uint8_t buf[64];
   size_t n;
-  if (msg_header->msgType1 == BASIC_MSG_TYP1 ||
+  if (msg_header->msgType1 == BASIC_MSG_TYP1 &&
       msg_header->msgType2 == BASIC_MSG_TYP2) {
+    printf("Basic");
     struct BasicMessage *basic = (struct BasicMessage *)msg_header;
     process_basic_message(basic);
-  } else if (msg_header->msgType1 == DATALINK_MSG_TYP1 ||
+  } else if (msg_header->msgType1 == DATALINK_MSG_TYP1 &&
              msg_header->msgType2 == DATALINK_MSG_TYP2) {
+    printf("Datalink");
     struct DataLinkMessage *datalink = (struct DataLinkMessage *)msg_header;
     process_datalink_message(datalink);
-  } else if (msg_header->msgType1 == INTERMEDIATE_MSG_TYP1 ||
+  } else if (msg_header->msgType1 == INTERMEDIATE_MSG_TYP1 &&
              msg_header->msgType2 == INTERMEDIATE_MSG_TYP2) {
+    printf("Intermediate");
     struct IntermediateMessage *intermediate =
         (struct IntermediateMessage *)msg_header;
     process_intermediate_message(intermediate);
@@ -36,14 +41,15 @@ void process_basic_message(struct BasicMessage *msg) {
   switch (msg->opCode1) {
 
   case APP_ACK:
+    printf("\tACK Received\n");
     n = ack_pack(buf, sizeof(buf));
-    printf("Hello world\n");
     if (n) {
       send_response(buf, n);
     }
     break;
 
   case APP_NAK:
+    printf("\tNAK Received\n");
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
@@ -88,6 +94,7 @@ void process_datalink_message(struct DataLinkMessage *msg) {
   switch (messageType) {
 
   case DLT_MAX_PAYLOAD_REQUEST:
+    printf("\tMaximum payload length?\n");
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
@@ -100,12 +107,14 @@ void process_datalink_message(struct DataLinkMessage *msg) {
 
     break;
   case DLT_MAX_PAYLOAD_RESPONSE:
+    printf("\tMaximum payload length\n");
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
     }
     break;
   default:
+    printf("\tRequest Not Support\n");
     n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
@@ -115,15 +124,16 @@ void process_datalink_message(struct DataLinkMessage *msg) {
 }
 
 void process_intermediate_message(struct IntermediateMessage *msg) {
-  uint16_t intermediateType = *((uint16_t *)(&(msg->opCode1)));
+  uint16_t IntermediateType = *((uint16_t *)(&(msg->opCode1)));
+  IntermediateTypeCode messageType = ConvertIntermediateType(IntermediateType);
+
   uint8_t buf[64];
   size_t n;
-  switch (intermediateType) {
+  switch (messageType) {
   case IT_INFO_RESPONSE:
+    printf("\tGetInformation() - Reply\n");
     n = ack_pack(buf, sizeof(buf));
-    if (n) {
-      send_response(buf, n);
-    }
+    send_response(buf, n);
     break;
 
   case IT_GET_UTC_TIME_REQUEST:
@@ -204,7 +214,7 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
   }
 }
 
-IntermediateTypeCode ConvertIntermediate(uint16_t intermediateType) {
+IntermediateTypeCode ConvertIntermediateType(uint16_t intermediateType) {
   uint16_t host = sys_be16_to_cpu(intermediateType);
   switch (host) {
   case IT_INFO_REQUEST:
