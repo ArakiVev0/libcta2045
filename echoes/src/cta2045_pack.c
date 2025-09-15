@@ -41,6 +41,24 @@ size_t ack_pack(uint8_t *out, size_t cap) {
   return sizeof(msg);
 }
 
+size_t datalink_pack(uint8_t op1, uint8_t op2, uint8_t *out, size_t cap) {
+  if (!out || cap < sizeof(struct DataLinkMessage))
+    return 0;
+
+  struct DataLinkMessage msg = {
+      .msgType1 = DATALINK_MSG_TYP1,
+      .msgType2 = DATALINK_MSG_TYP2,
+      .length = sys_cpu_to_be16(2),
+      .opCode1 = op1,
+      .opCode2 = op2,
+  };
+
+  uint16_t cs =
+      checksum_calc((const uint8_t *)&msg, sizeof(msg) - sizeof(msg.checksum));
+  msg.checksum = sys_cpu_to_be16(cs);
+  return sizeof(msg);
+}
+
 size_t basic_pack(uint8_t op1, uint8_t op2, uint8_t *out, size_t cap) {
   if (!out || cap < sizeof(struct BasicMessage))
     return 0;

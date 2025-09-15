@@ -25,6 +25,7 @@ static void send_demo_frames(void) {
     LOG_INF("Send MaxPayloadReq");
     send_response(buf, n);
   }
+
   k_sleep(K_MSEC(50));
 
   n = basic_pack(OPER_STATE_REQ, 0x00, buf, sizeof(buf));
@@ -69,7 +70,7 @@ void main(void) {
   /* Optional: give RX thread a moment */
   k_sleep(K_MSEC(100));
 
-  // send_demo_frames();
+  send_demo_frames();
 
   while (1) {
     k_sleep(K_MSEC(10));

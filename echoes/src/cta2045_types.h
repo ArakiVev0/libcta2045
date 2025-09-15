@@ -76,6 +76,29 @@ struct IntermediateMessage {
   uint16_t checksum;
 } __attribute__((packed));
 
+struct GetInfoResponse {
+  uint8_t msgType1;
+  uint8_t msgType2;
+  uint16_t length;
+  uint8_t opCode1;
+  uint8_t opCode2;
+  uint8_t responseCode;
+  uint8_t version[2];
+  uint16_t vendorId;
+  uint16_t deviceType;
+  uint8_t deviceRevision[2];
+  uint8_t capability[4];
+  uint8_t reserved1;
+  uint8_t modelNumber[16];
+  uint8_t serialNumber[16];
+  uint8_t firmwareYear20xx;
+  uint8_t firmwareMonth;
+  uint8_t firmwareDay;
+  uint8_t firmwareMajor;
+  uint8_t firmwareMinor;
+  uint16_t checksum;
+} __attribute__((packed));
+
 struct GetUTCTimeResponse {
   uint8_t msgType1;
   uint8_t msgType2;

@@ -41,7 +41,7 @@ void process_basic_message(struct BasicMessage *msg) {
   switch (msg->opCode1) {
 
   case APP_ACK:
-    printf("\tACK Received\n");
+    printf("\tAPP ACK\n");
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
@@ -49,7 +49,7 @@ void process_basic_message(struct BasicMessage *msg) {
     break;
 
   case APP_NAK:
-    printf("\tNAK Received\n");
+    printf("\tAPP NAK Error Code: 0x%02X\n", msg->opCode2);
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
@@ -57,6 +57,7 @@ void process_basic_message(struct BasicMessage *msg) {
     break;
 
   case OPER_STATE_RESP:
+    printf("\tOperational State Response\n");
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
@@ -64,16 +65,19 @@ void process_basic_message(struct BasicMessage *msg) {
     break;
 
   case CUST_OVERRIDE:
+    printf("\tCustomer Override\n");
     n = ack_pack(buf, sizeof(buf));
-    if (n) {
-      send_response(buf, n);
-    }
-
-    basic_pack(APP_ACK, CUST_OVERRIDE, buf, sizeof(buf));
 
     if (n) {
       send_response(buf, n);
     }
+
+    n = basic_pack(APP_ACK, CUST_OVERRIDE, buf, sizeof(buf));
+
+    if (n) {
+      send_response(buf, n);
+    }
+
     break;
 
   default:
@@ -100,7 +104,8 @@ void process_datalink_message(struct DataLinkMessage *msg) {
       send_response(buf, n);
     }
 
-    n = datalink_pack_max_payload_req(buf, sizeof(buf));
+    n = datalink_pack(MAXPAYLOAD_REQ_OP_CODE1, CLEAR_OP_CODE2, buf,
+                      sizeof(buf));
     if (n) {
       send_response(buf, n);
     }
