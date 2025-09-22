@@ -20,37 +20,9 @@ static void send_demo_frames(void) {
   uint8_t buf[64];
   size_t n;
 
-  n = datalink_pack_max_payload_req(buf, sizeof(buf));
+  n = intermediate_pack_get_device_info_req(buf, sizeof(buf));
   if (n) {
-    LOG_INF("Send MaxPayloadReq");
-    send_response(buf, n);
-  }
-
-  k_sleep(K_MSEC(50));
-
-  n = basic_pack(OPER_STATE_REQ, 0x00, buf, sizeof(buf));
-  if (n) {
-    LOG_INF("Send OperStateReq");
-    send_response(buf, n);
-  }
-  k_sleep(K_MSEC(50));
-
-  n = intermediate_pack_get_utc_time_req(buf, sizeof(buf));
-  if (n) {
-    LOG_INF("Send GetUTCTime");
-    send_response(buf, n);
-  }
-  k_sleep(K_MSEC(50));
-
-  n = ack_pack(buf, sizeof(buf));
-  if (n) {
-    LOG_INF("Send LINK LAYER ACK");
-    send_response(buf, n);
-  }
-
-  n = nak_pack(LLN_REQUEST_NOT_SUPPORTED, buf, sizeof(buf));
-  if (n) {
-    LOG_INF("Send LINK LAYER NAK");
+    LOG_INF("Send Get Get Device Request");
     send_response(buf, n);
   }
 }
@@ -66,9 +38,6 @@ void main(void) {
   k_thread_create(&cta_thr, cta_stack, K_THREAD_STACK_SIZEOF(cta_stack),
                   cta2045_uart_thread, NULL, NULL, NULL, CTA_THREAD_PRIO, 0,
                   K_NO_WAIT);
-
-  /* Optional: give RX thread a moment */
-  k_sleep(K_MSEC(100));
 
   send_demo_frames();
 

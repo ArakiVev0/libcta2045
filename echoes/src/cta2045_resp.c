@@ -2,11 +2,13 @@
 #include "cta2045_pack.h"
 #include "cta2045_types.h"
 #include "cta2045_uart.h"
-#include "zephyr/sys/printk.h"
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <zephyr/logging/log.h>
 #include <zephyr/sys/byteorder.h>
+
+LOG_MODULE_REGISTER(cta2045, LOG_LEVEL_INF);
 
 void process_response(struct MessageHeader *msg_header) {
   uint8_t buf[64];
@@ -128,6 +130,29 @@ void process_datalink_message(struct DataLinkMessage *msg) {
   }
 }
 
+void process_get_device_info_response(struct GetInfoResponse *msg) {
+  LOG_INF("=== GetInfoResponse ===");
+  LOG_INF("msgType1=0x%02X  msgType2=0x%02X  length=%u", msg->msgType1,
+          msg->msgType2, sys_be16_to_cpu(msg->length));
+  LOG_INF("opCode1=0x%02X  opCode2=0x%02X  responseCode=0x%02X", msg->opCode1,
+          msg->opCode2, msg->responseCode);
+  LOG_INF("version=\"%.*s\"  vendorId=0x%04X  deviceType=0x%04X  "
+          "revision=%02X %02X",
+          2, msg->version, sys_be16_to_cpu(msg->vendorId),
+          sys_be16_to_cpu(msg->deviceType), msg->deviceRevision[0],
+          msg->deviceRevision[1]);
+  LOG_INF("capability=%02X %02X %02X %02X  reserved=0x%02X", msg->capability[0],
+          msg->capability[1], msg->capability[2], msg->capability[3],
+          msg->reserved);
+  LOG_INF("modelNumber=\"%.*s\"", 16, msg->modelNumber);
+  LOG_INF("serialNumber=\"%.*s\"", 16, msg->serialNumber);
+  LOG_INF("firmware=20%02u-%02u-%02u  fwVersion=%u.%u", msg->firmwareYear20xx,
+          msg->firmwareMonth, msg->firmwareDay, msg->firmwareMajor,
+          msg->firmwareMinor);
+  LOG_INF("checksum=0x%04X", sys_be16_to_cpu(msg->checksum));
+  LOG_INF("=======================");
+}
+
 void process_intermediate_message(struct IntermediateMessage *msg) {
   uint16_t IntermediateType = *((uint16_t *)(&(msg->opCode1)));
   IntermediateTypeCode messageType = ConvertIntermediateType(IntermediateType);
@@ -138,7 +163,12 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
   case IT_INFO_RESPONSE:
     printf("\tGetInformation() - Reply\n");
     n = ack_pack(buf, sizeof(buf));
-    send_response(buf, n);
+    if (n) {
+      send_response(buf, n);
+    }
+
+    struct GetInfoResponse *resp = (struct GetInfoResponse *)msg;
+    process_get_device_info_response(resp);
     break;
 
   case IT_GET_UTC_TIME_REQUEST:
@@ -162,6 +192,7 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
     break;
 
   case IT_COMMODITY_RESPONSE:
+    printf("\tCommodity response\n");
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);

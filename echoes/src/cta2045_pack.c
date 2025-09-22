@@ -78,25 +78,6 @@ size_t basic_pack(uint8_t op1, uint8_t op2, uint8_t *out, size_t cap) {
   return sizeof(msg);
 }
 
-size_t datalink_pack_max_payload_req(uint8_t *out, size_t cap) {
-  if (!out || cap < sizeof(struct DataLinkMessage))
-    return 0;
-
-  struct DataLinkMessage msg = {
-      .msgType1 = DATALINK_MSG_TYP1,
-      .msgType2 = DATALINK_MSG_TYP2,
-      .length = sys_cpu_to_be16(2),
-      .opCode1 = MAXPAYLOAD_REQ_OP_CODE1,
-      .opCode2 = CLEAR_OP_CODE2,
-  };
-  uint16_t cs =
-      checksum_calc((const uint8_t *)&msg, sizeof(msg) - sizeof(msg.checksum));
-  msg.checksum = sys_cpu_to_be16(cs);
-
-  memcpy(out, &msg, sizeof(msg));
-  return sizeof(msg);
-}
-
 size_t intermediate_pack_get_info_req(uint8_t *out, size_t cap) {
   if (!out || cap < sizeof(struct IntermediateMessage))
     return 0;
@@ -145,6 +126,26 @@ size_t datalink_pack_maxPayload_resp(uint8_t *out, size_t cap) {
       .length = sys_cpu_to_be16(2),
       .opCode1 = MAXPAYLOAD_RESP,
       .opCode2 = 0,
+  };
+
+  uint16_t cs =
+      checksum_calc((const uint8_t *)&msg, sizeof(msg) - sizeof(msg.checksum));
+  msg.checksum = sys_cpu_to_be16(cs);
+
+  memcpy(out, &msg, sizeof(msg));
+  return sizeof(msg);
+}
+
+size_t intermediate_pack_get_device_info_req(uint8_t *out, size_t cap) {
+  if (!out || cap < sizeof(struct IntermediateMessage))
+    return 0;
+
+  struct IntermediateMessage msg = {
+      .msgType1 = INTERMEDIATE_MSG_TYP1,
+      .msgType2 = INTERMEDIATE_MSG_TYP2,
+      .length = sys_cpu_to_be16(2),
+      .opCode1 = 0x01,
+      .opCode2 = 0x01,
   };
 
   uint16_t cs =

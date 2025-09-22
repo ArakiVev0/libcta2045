@@ -88,7 +88,7 @@ struct GetInfoResponse {
   uint16_t deviceType;
   uint8_t deviceRevision[2];
   uint8_t capability[4];
-  uint8_t reserved1;
+  uint8_t reserved;
   uint8_t modelNumber[16];
   uint8_t serialNumber[16];
   uint8_t firmwareYear20xx;
