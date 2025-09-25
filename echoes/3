@@ -216,16 +216,6 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
   case IT_GET_SET_TEMPERATURE_OFFSET_RESPONSE:
     uint16_t len = sys_be16_to_cpu(msg->length);
     size_t wire_bytes = (size_t)len + 6;
-
-    if (wire_bytes == sizeof(struct IntermediateMessage)) {
-      struct IntermediateMessage *resp = (struct IntermediateMessage *)msg;
-      process_set_temprature_offset_response(resp);
-    } else if (wire_bytes == sizeof(struct GetTemperatureOffsetResponse)) {
-      struct GetTemperatureOffsetResponse *resp =
-          (struct GetTemperatureOffsetResponse *)msg;
-      process_get_temperature_offset_response(resp);
-    } else {
-    }
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
