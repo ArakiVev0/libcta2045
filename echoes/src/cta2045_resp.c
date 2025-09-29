@@ -219,7 +219,7 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
 
     if (wire_bytes == sizeof(struct IntermediateMessage)) {
       struct IntermediateMessage *resp = (struct IntermediateMessage *)msg;
-      process_set_temprature_offset_response(resp);
+      process_set_temperature_offset_response(resp);
     } else if (wire_bytes == sizeof(struct GetTemperatureOffsetResponse)) {
       struct GetTemperatureOffsetResponse *resp =
           (struct GetTemperatureOffsetResponse *)msg;
