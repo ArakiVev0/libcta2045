@@ -130,7 +130,8 @@ void process_datalink_message(struct DataLinkMessage *msg) {
   }
 }
 
-void process_get_device_info_response(struct GetInfoResponse *msg) {
+void process_get_device_info_response(struct IntermediateMessage *resp) {
+  struct GetInfoResponse *msg = (struct GetInfoResponse *)resp;
   LOG_INF("=== GetInfoResponse ===");
   LOG_INF("msgType1=0x%02X  msgType2=0x%02X  length=%u", msg->msgType1,
           msg->msgType2, sys_be16_to_cpu(msg->length));
@@ -153,9 +154,23 @@ void process_get_device_info_response(struct GetInfoResponse *msg) {
   LOG_INF("=======================");
 }
 
+void process_commodity_response(struct IntermediateMessage *resp) {
+  struct CommodityResponse *msg = (struct CommodityResponse *)resp;
+}
+
+void process_set_temperature_offset_response(struct IntermediateMessage *resp) {
+}
+
+void process_get_temperature_offset_response(struct IntermediateMessage *resp) {
+  struct GetTemperatureOffsetResponse *msg =
+      (struct GetTemperatureOffsetResponse *)resp;
+}
+
 void process_intermediate_message(struct IntermediateMessage *msg) {
   uint16_t IntermediateType = *((uint16_t *)(&(msg->opCode1)));
   IntermediateTypeCode messageType = ConvertIntermediateType(IntermediateType);
+
+  uint16_t len = msg->length;
 
   uint8_t buf[64];
   size_t n;
@@ -163,18 +178,16 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
   case IT_INFO_RESPONSE:
     printf("\tGetInformation() - Reply\n");
 
-    struct GetInfoResponse *resp = (struct GetInfoResponse *)msg;
-    process_get_device_info_response(resp);
+    process_get_device_info_response(msg);
 
     n = ack_pack(buf, sizeof(buf));
     if (n) {
       send_response(buf, n);
     }
-
     break;
 
   case IT_GET_UTC_TIME_REQUEST:
-    if (sys_cpu_to_be16(msg->length) == 2) {
+    if (sys_cpu_to_be16(len) == 2) {
       n = ack_pack(buf, sizeof(buf));
       if (n) {
         send_response(buf, n);
@@ -196,8 +209,7 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
   case IT_COMMODITY_RESPONSE:
     printf("\tCommodity response\n");
 
-    struct CommodityResponse *resp = (struct CommodityResponse *)msg;
-    process_commodity_response(resp);
+    process_commodity_response(msg);
 
     n = ack_pack(buf, sizeof(buf));
     if (n) {
@@ -214,16 +226,13 @@ void process_intermediate_message(struct IntermediateMessage *msg) {
     break;
 
   case IT_GET_SET_TEMPERATURE_OFFSET_RESPONSE:
-    uint16_t len = sys_be16_to_cpu(msg->length);
+    len = sys_be16_to_cpu(len);
     size_t wire_bytes = (size_t)len + 6;
 
     if (wire_bytes == sizeof(struct IntermediateMessage)) {
-      struct IntermediateMessage *resp = (struct IntermediateMessage *)msg;
-      process_set_temperature_offset_response(resp);
+      process_set_temperature_offset_response(msg);
     } else if (wire_bytes == sizeof(struct GetTemperatureOffsetResponse)) {
-      struct GetTemperatureOffsetResponse *resp =
-          (struct GetTemperatureOffsetResponse *)msg;
-      process_get_temperature_offset_response(resp);
+      process_get_temperature_offset_response(msg);
     } else {
     }
     n = ack_pack(buf, sizeof(buf));

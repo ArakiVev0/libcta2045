@@ -112,6 +112,48 @@ struct GetUTCTimeResponse {
   uint16_t checksum;
 } __attribute__((packed));
 
+struct CommodityData {
+  uint8_t commodityCode;
+  uint8_t instantRate[6];
+  uint8_t cumlativeAmount[6];
+} __attribute__((packed));
+
+struct CommodityResponse {
+  uint8_t msgType1;
+  uint8_t msgType2;
+  uint16_t length;
+  uint8_t opCode1;
+  uint8_t opCode2;
+  uint8_t responseCode;
+  struct CommodityData commodityData[7];
+  uint16_t checksum;
+} __attribute__((packed));
+
+struct SetTemperatureOffsetRequest {
+  uint8_t msgType1;
+  uint8_t msgType2;
+  uint16_t length;
+  uint8_t opCode1;
+  uint8_t opCode2;
+  uint8_t currentOffset;
+  uint8_t units;
+  uint8_t forBasicDRCode;
+  uint16_t checksum;
+} __attribute__((packed));
+
+struct GetTemperatureOffsetResponse {
+  uint8_t msgType1;
+  uint8_t msgType2;
+  uint16_t length;
+  uint8_t opCode1;
+  uint8_t opCode2;
+  uint8_t responseCode;
+  uint8_t currentOffset;
+  uint8_t units;
+  uint8_t forBasicDRCode;
+  uint16_t checksum;
+} __attribute__((packed));
+
 typedef enum {
   LLN_NO_REASON,
   LLN_INVALID_BYTE,
